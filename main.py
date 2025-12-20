@@ -1,3 +1,4 @@
+
 # main.py
 # MoneyMind - automated script -> TTS -> visuals -> music -> assemble -> (optional) upload
 # NOTE: requires environment secrets:
@@ -260,6 +261,7 @@ def upload_to_youtube(video_path, title, description, tags, thumb_path=None, pri
     print("Upload logic here - OAuth found. Implement upload with google-auth client and youtube API.")
     return None
 
+
 # ---------- Main workflow ----------
 def run_cycle(topic):
     stamp = datetime.utcnow().strftime("%Y%m%d%H%M%S")
@@ -306,10 +308,6 @@ def run_cycle(topic):
     # Here we rely on the TTS output being long enough; we trim movie accordingly
     assemble_video(short_voice_path, clips[:2], music, short_out)
 
-    # upload (optional)
-    # Upload disabled – manual upload only
-pass
-
 if __name__ == "__main__":
     # Example topics rotation (you can replace or connect to a trends API)
     topics = [
@@ -320,13 +318,3 @@ if __name__ == "__main__":
     ]
     topic = random.choice(topics)
     run_cycle(topic)
-
-# save final files
-long_out = os.path.join(OUTDIR, "final_long.mp4")
-short_out = os.path.join(OUTDIR, "final_short.mp4")
-
-final_clip.write_videofile(long_out, fps=30)
-short_clip.write_videofile(short_out, fps=30)
-
-# Upload disabled – manual upload only
-pass
